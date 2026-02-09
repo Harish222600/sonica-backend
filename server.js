@@ -33,8 +33,8 @@ app.get('/api/health', (req, res) => {
 // Error handling middleware
 app.use((err, req, res, next) => {
   console.error(err.stack);
-  res.status(500).json({ 
-    success: false, 
+  res.status(500).json({
+    success: false,
     message: 'Internal Server Error',
     error: process.env.NODE_ENV === 'development' ? err.message : undefined
   });
@@ -53,8 +53,10 @@ const connectDB = async () => {
 
 // Start Server
 const PORT = process.env.PORT || 5000;
+const seedDatabase = require('./src/seed');
 
-connectDB().then(() => {
+connectDB().then(async () => {
+  await seedDatabase();
   app.listen(PORT, () => {
     console.log(`🚴 Sonica Bicycle Server running on port ${PORT}`);
   });
