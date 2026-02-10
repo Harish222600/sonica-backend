@@ -14,3 +14,11 @@ Razorpay Signature: ad98e1c85f08e93af47f120aeb397316bc01537ae5c0c522d0a34e93c306
 Generated Signature: ad98e1c85f08e93af47f120aeb397316bc01537ae5c0c522d0a34e93c3066de5
 Match: true
 ----------------------------------------
+
+[2026-02-10T18:14:23.431Z] Payment Verification Debug:
+Razorpay Order ID: order_SEXOkICPDUENtf
+Razorpay Payment ID: pay_SEXPXhtW7TLBgC
+Razorpay Signature: 1e55af91a798e0c87097f74a169645330a99d19b9ceed735cc68a96143e10e90
+Generated Signature: 1e55af91a798e0c87097f74a169645330a99d19b9ceed735cc68a96143e10e90
+Match: true
+----------------------------------------
