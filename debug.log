@@ -1,0 +1,16 @@
+
+[2026-02-10T14:52:07.858Z] Payment Verification Debug:
+Razorpay Order ID: undefined
+Razorpay Payment ID: pay_SETxsSlPvdVUp8
+Razorpay Signature: undefined
+Generated Signature: 9977ec7daa807c4f6e1eddff686200efa8f2f95e591c88f4c9447b4ce08c1c52
+Match: false
+----------------------------------------
+
+[2026-02-10T14:55:05.369Z] Payment Verification Debug:
+Razorpay Order ID: order_SEU0n5SGLcCHQY
+Razorpay Payment ID: pay_SEU10UqDygEBt4
+Razorpay Signature: ad98e1c85f08e93af47f120aeb397316bc01537ae5c0c522d0a34e93c3066de5
+Generated Signature: ad98e1c85f08e93af47f120aeb397316bc01537ae5c0c522d0a34e93c3066de5
+Match: true
+----------------------------------------

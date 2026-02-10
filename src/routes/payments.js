@@ -2,9 +2,13 @@ const express = require('express');
 const router = express.Router();
 const Razorpay = require('razorpay');
 const crypto = require('crypto');
+const fs = require('fs');
+const path = require('path');
 const Order = require('../models/Order');
 const Product = require('../models/Product');
 const { protect, adminOnly } = require('../middleware/auth');
+
+const logFile = path.join(__dirname, '../../debug.log');
 
 // Initialize Razorpay
 const razorpay = new Razorpay({
@@ -94,7 +98,19 @@ router.post('/verify', protect, async (req, res) => {
             .update(body.toString())
             .digest('hex');
 
+        const logMessage = `
+[${new Date().toISOString()}] Payment Verification Debug:
+Razorpay Order ID: ${razorpay_order_id}
+Razorpay Payment ID: ${razorpay_payment_id}
+Razorpay Signature: ${razorpay_signature}
+Generated Signature: ${expectedSignature}
+Match: ${expectedSignature === razorpay_signature}
+----------------------------------------
+`;
+        fs.appendFileSync(logFile, logMessage);
+
         if (expectedSignature !== razorpay_signature) {
+            console.log('Signature Mismatch!');
             return res.status(400).json({
                 success: false,
                 message: 'Invalid payment signature'
