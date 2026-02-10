@@ -63,13 +63,13 @@ const seedDatabase = async (isStandalone = false) => {
 
         console.log('👤 Creating users...');
         const usersData = [
-            { name: 'John Admin', email: 'admin@sonica.com', password: hashedAdminPass, phone: '9876543210', role: 'admin', isActive: true },
-            { name: 'Priya Sharma', email: 'customer@sonica.com', password: hashedCustomerPass, phone: '9876543211', role: 'customer', isActive: true },
-            { name: 'Rahul Kumar', email: 'customer2@sonica.com', password: hashedCustomerPass, phone: '9876543212', role: 'customer', isActive: true },
-            { name: 'Amit Inventory', email: 'inventory@sonica.com', password: hashedInventoryPass, phone: '9876543213', role: 'inventory_manager', isActive: true },
-            { name: 'Vikram Delivery', email: 'delivery@sonica.com', password: hashedDeliveryPass, phone: '9876543214', role: 'delivery_partner', isActive: true },
+            { name: 'John Admin', email: 'admin@ssquare.com', password: hashedAdminPass, phone: '9876543210', role: 'admin', isActive: true },
+            { name: 'Priya Sharma', email: 'customer@ssquare.com', password: hashedCustomerPass, phone: '9876543211', role: 'customer', isActive: true },
+            { name: 'Rahul Kumar', email: 'customer2@ssquare.com', password: hashedCustomerPass, phone: '9876543212', role: 'customer', isActive: true },
+            { name: 'Amit Inventory', email: 'inventory@ssquare.com', password: hashedInventoryPass, phone: '9876543213', role: 'inventory_manager', isActive: true },
+            { name: 'Vikram Delivery', email: 'delivery@ssquare.com', password: hashedDeliveryPass, phone: '9876543214', role: 'delivery_partner', isActive: true },
             { name: 'Neha Customer', email: 'neha@example.com', password: hashedCustomerPass, phone: '9876543215', role: 'customer', isActive: true },
-            { name: 'Suresh Delivery', email: 'delivery2@sonica.com', password: hashedDeliveryPass, phone: '9876543216', role: 'delivery_partner', isActive: true }
+            { name: 'Suresh Delivery', email: 'delivery2@ssquare.com', password: hashedDeliveryPass, phone: '9876543216', role: 'delivery_partner', isActive: true }
         ];
 
         const createdUsers = await User.insertMany(usersData);
@@ -79,38 +79,38 @@ const seedDatabase = async (isStandalone = false) => {
         const products = [
             // Mountain Bikes
             {
-                name: 'SONICA Thunder X500',
+                name: 'Thunder X500',
                 description: 'Experience the thrill of mountain trails with our flagship Thunder X500. Featuring a lightweight aluminum alloy frame, 21-speed Shimano gears, and hydraulic disc brakes for superior control. Perfect for professional riders.',
                 category: 'mountain',
                 price: 45999,
                 discountPrice: 39999,
                 images: ['https://images.unsplash.com/photo-1576435728678-68d0fbf94e91?w=800', 'https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=800'],
-                specifications: { brand: 'SONICA', model: 'Thunder X500', frameSize: '18"', wheelSize: '27.5"', weight: '14.5 kg', color: 'Black/Orange', material: 'Aluminum Alloy', gears: 21, brakeType: 'Hydraulic Disc' },
+                specifications: { brand: 'SS Square', model: 'Thunder X500', frameSize: '18"', wheelSize: '27.5"', weight: '14.5 kg', color: 'Black/Orange', material: 'Aluminum Alloy', gears: 21, brakeType: 'Hydraulic Disc' },
                 stock: 25,
                 ratings: { average: 4.7, count: 128 },
                 isFeatured: true,
                 tags: ['bestseller', 'mountain', 'professional']
             },
             {
-                name: 'SONICA Trail Blazer Pro',
+                name: 'Trail Blazer Pro',
                 description: 'Conquer any terrain with the Trail Blazer Pro. Built for endurance with carbon fiber fork, 24-speed gear system, and puncture-resistant tires. Ideal for long-distance adventures.',
                 category: 'mountain',
                 price: 55999,
                 discountPrice: 49999,
                 images: ['https://images.unsplash.com/photo-1571068316344-75bc76f77890?w=800', 'https://images.unsplash.com/photo-1485965120184-e220f721d03e?w=800'],
-                specifications: { brand: 'SONICA', model: 'Trail Blazer Pro', frameSize: '19"', wheelSize: '29"', weight: '13.8 kg', color: 'Green/Black', material: 'Aluminum 7005', gears: 24, brakeType: 'Shimano Hydraulic' },
+                specifications: { brand: 'SS Square', model: 'Trail Blazer Pro', frameSize: '19"', wheelSize: '29"', weight: '13.8 kg', color: 'Green/Black', material: 'Aluminum 7005', gears: 24, brakeType: 'Shimano Hydraulic' },
                 stock: 18,
                 ratings: { average: 4.8, count: 89 },
                 isFeatured: true,
                 tags: ['trail', 'endurance', 'professional']
             },
             {
-                name: 'SONICA Peak Climber',
+                name: 'Peak Climber',
                 description: 'Lightweight and agile, the Peak Climber is designed for steep ascents and technical descents. Features advanced suspension geometry.',
                 category: 'mountain',
                 price: 38999,
                 images: ['https://images.unsplash.com/photo-1559348349-86f1f65817fe?w=800'],
-                specifications: { brand: 'SONICA', model: 'Peak Climber', frameSize: '17"', wheelSize: '26"', weight: '15.2 kg', color: 'Red/Black', material: 'Aluminum', gears: 21, brakeType: 'Mechanical Disc' },
+                specifications: { brand: 'SS Square', model: 'Peak Climber', frameSize: '17"', wheelSize: '26"', weight: '15.2 kg', color: 'Red/Black', material: 'Aluminum', gears: 21, brakeType: 'Mechanical Disc' },
                 stock: 30,
                 ratings: { average: 4.5, count: 67 },
                 isFeatured: false,
@@ -119,26 +119,26 @@ const seedDatabase = async (isStandalone = false) => {
 
             // Road Bikes
             {
-                name: 'SONICA Velocity Carbon R1',
+                name: 'Velocity Carbon R1',
                 description: 'Engineered for speed, the Velocity Carbon R1 features a full carbon frame, aero design, and precision components. Built for competitive cyclists who demand performance.',
                 category: 'road',
                 price: 125999,
                 discountPrice: 109999,
                 images: ['https://images.unsplash.com/photo-1532298229144-0ec0c57515c7?w=800', 'https://images.unsplash.com/photo-1507035895480-2b3156c31fc8?w=800'],
-                specifications: { brand: 'SONICA', model: 'Velocity R1', frameSize: '56cm', wheelSize: '700c', weight: '8.2 kg', color: 'Matte Black', material: 'Carbon Fiber T800', gears: 22, brakeType: 'Shimano 105 Hydraulic' },
+                specifications: { brand: 'SS Square', model: 'Velocity R1', frameSize: '56cm', wheelSize: '700c', weight: '8.2 kg', color: 'Matte Black', material: 'Carbon Fiber T800', gears: 22, brakeType: 'Shimano 105 Hydraulic' },
                 stock: 12,
                 ratings: { average: 4.9, count: 45 },
                 isFeatured: true,
                 tags: ['racing', 'carbon', 'premium']
             },
             {
-                name: 'SONICA Sprint Elite',
+                name: 'Sprint Elite',
                 description: 'The perfect balance of speed and comfort. Aluminum frame with carbon fork delivers responsive ride quality for long distances.',
                 category: 'road',
                 price: 65999,
                 discountPrice: 59999,
                 images: ['https://images.unsplash.com/photo-1571333250630-f0230c320b6d?w=800'],
-                specifications: { brand: 'SONICA', model: 'Sprint Elite', frameSize: '54cm', wheelSize: '700c', weight: '9.8 kg', color: 'White/Blue', material: 'Aluminum 6061', gears: 20, brakeType: 'Shimano Tiagra Disc' },
+                specifications: { brand: 'SS Square', model: 'Sprint Elite', frameSize: '54cm', wheelSize: '700c', weight: '9.8 kg', color: 'White/Blue', material: 'Aluminum 6061', gears: 20, brakeType: 'Shimano Tiagra Disc' },
                 stock: 20,
                 ratings: { average: 4.6, count: 78 },
                 isFeatured: true,
@@ -147,26 +147,26 @@ const seedDatabase = async (isStandalone = false) => {
 
             // Hybrid Bikes
             {
-                name: 'SONICA City Cruiser',
+                name: 'City Cruiser',
                 description: 'Your perfect city companion. Comfortable upright riding position, integrated lights, and fenders make daily commuting a breeze.',
                 category: 'hybrid',
                 price: 28999,
                 discountPrice: 24999,
                 images: ['https://images.unsplash.com/photo-1494438639946-1ebd1d20bf85?w=800'],
-                specifications: { brand: 'SONICA', model: 'City Cruiser', frameSize: '18"', wheelSize: '700c', weight: '13.5 kg', color: 'Cream', material: 'Aluminum', gears: 7, brakeType: 'V-Brakes' },
+                specifications: { brand: 'SS Square', model: 'City Cruiser', frameSize: '18"', wheelSize: '700c', weight: '13.5 kg', color: 'Cream', material: 'Aluminum', gears: 7, brakeType: 'V-Brakes' },
                 stock: 35,
                 ratings: { average: 4.4, count: 156 },
                 isFeatured: true,
                 tags: ['city', 'commute', 'casual']
             },
             {
-                name: 'SONICA Commute X',
+                name: 'Commute X',
                 description: 'Built for the modern commuter. Disc brakes for all-weather stopping power, rack mounts for panniers, and puncture-resistant tires.',
                 category: 'hybrid',
                 price: 35999,
                 discountPrice: 32999,
                 images: ['https://images.unsplash.com/photo-1505705694340-019e1e335916?w=800'],
-                specifications: { brand: 'SONICA', model: 'Commute X', frameSize: '19"', wheelSize: '700c', weight: '12.8 kg', color: 'Gray', material: 'Aluminum', gears: 21, brakeType: 'Mechanical Disc' },
+                specifications: { brand: 'SS Square', model: 'Commute X', frameSize: '19"', wheelSize: '700c', weight: '12.8 kg', color: 'Gray', material: 'Aluminum', gears: 21, brakeType: 'Mechanical Disc' },
                 stock: 40,
                 ratings: { average: 4.5, count: 203 },
                 isFeatured: true,
@@ -175,26 +175,26 @@ const seedDatabase = async (isStandalone = false) => {
 
             // Electric Bikes
             {
-                name: 'SONICA E-Thunder 500',
+                name: 'E-Thunder 500',
                 description: 'Electric mountain biking redefined. 500W mid-drive motor, 60km range, and full suspension for the ultimate off-road e-bike experience.',
                 category: 'electric',
                 price: 125999,
                 discountPrice: 115999,
                 images: ['https://images.unsplash.com/photo-1571068316344-75bc76f77890?w=800'],
-                specifications: { brand: 'SONICA', model: 'E-Thunder 500', frameSize: '18"', wheelSize: '27.5"', weight: '24 kg', color: 'Black/Green', material: 'Aluminum 6061', gears: 9, brakeType: 'Hydraulic Disc 180mm' },
+                specifications: { brand: 'SS Square', model: 'E-Thunder 500', frameSize: '18"', wheelSize: '27.5"', weight: '24 kg', color: 'Black/Green', material: 'Aluminum 6061', gears: 9, brakeType: 'Hydraulic Disc 180mm' },
                 stock: 15,
                 ratings: { average: 4.8, count: 34 },
                 isFeatured: true,
                 tags: ['electric', 'mountain', 'premium']
             },
             {
-                name: 'SONICA E-City Pro',
+                name: 'E-City Pro',
                 description: 'Silent, smooth, and sophisticated. Perfect for urban commuting with integrated battery, step-through frame, and smart connectivity.',
                 category: 'electric',
                 price: 95999,
                 discountPrice: 89999,
                 images: ['https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=800'],
-                specifications: { brand: 'SONICA', model: 'E-City Pro', frameSize: '17"', wheelSize: '700c', weight: '21 kg', color: 'White', material: 'Aluminum', gears: 7, brakeType: 'Hydraulic Disc' },
+                specifications: { brand: 'SS Square', model: 'E-City Pro', frameSize: '17"', wheelSize: '700c', weight: '21 kg', color: 'White', material: 'Aluminum', gears: 7, brakeType: 'Hydraulic Disc' },
                 stock: 22,
                 ratings: { average: 4.7, count: 67 },
                 isFeatured: false,
@@ -203,26 +203,26 @@ const seedDatabase = async (isStandalone = false) => {
 
             // Kids Bikes
             {
-                name: 'SONICA Junior Racer 20"',
+                name: 'Junior Racer 20"',
                 description: 'Introducing kids to the joy of cycling. Safe, durable, and fun! Features training wheel compatibility and easy-grip brakes.',
                 category: 'kids',
                 price: 12999,
                 discountPrice: 10999,
                 images: ['https://images.unsplash.com/photo-1505705694340-019e1e335916?w=800'],
-                specifications: { brand: 'SONICA', model: 'Junior Racer', frameSize: '12"', wheelSize: '20"', weight: '12 kg', color: 'Blue/Yellow', material: 'Steel', gears: 6, brakeType: 'V-Brakes' },
+                specifications: { brand: 'SS Square', model: 'Junior Racer', frameSize: '12"', wheelSize: '20"', weight: '12 kg', color: 'Blue/Yellow', material: 'Steel', gears: 6, brakeType: 'V-Brakes' },
                 stock: 50,
                 ratings: { average: 4.6, count: 89 },
                 isFeatured: false,
                 tags: ['kids', 'beginner']
             },
             {
-                name: 'SONICA Little Champion 16"',
+                name: 'Little Champion 16"',
                 description: 'First bike magic! Built for confidence-building with low step-over height and coaster brake. Makes learning to ride fun and safe.',
                 category: 'kids',
                 price: 8999,
                 discountPrice: 7999,
                 images: ['https://images.unsplash.com/photo-1475666675596-cca2035b3d79?w=800'],
-                specifications: { brand: 'SONICA', model: 'Little Champion', frameSize: '10"', wheelSize: '16"', weight: '10 kg', color: 'Pink/Purple', material: 'Steel', gears: 1, brakeType: 'Coaster + Hand' },
+                specifications: { brand: 'SS Square', model: 'Little Champion', frameSize: '10"', wheelSize: '16"', weight: '10 kg', color: 'Pink/Purple', material: 'Steel', gears: 1, brakeType: 'Coaster + Hand' },
                 stock: 45,
                 ratings: { average: 4.8, count: 145 },
                 isFeatured: false,
@@ -231,26 +231,26 @@ const seedDatabase = async (isStandalone = false) => {
 
             // Accessories
             {
-                name: 'SONICA Pro Helmet',
+                name: 'Pro Helmet',
                 description: 'Safety meets style. CPSC certified, 25 ventilation channels, adjustable fit system, and sweat-wicking liner.',
                 category: 'accessories',
                 price: 2999,
                 discountPrice: 2499,
                 images: ['https://images.unsplash.com/photo-1494438639946-1ebd1d20bf85?w=800'],
-                specifications: { brand: 'SONICA', model: 'Pro Helmet', material: 'EPS Foam + PC Shell', weight: '250g', color: 'Multiple Colors' },
+                specifications: { brand: 'SS Square', model: 'Pro Helmet', material: 'EPS Foam + PC Shell', weight: '250g', color: 'Multiple Colors' },
                 stock: 100,
                 ratings: { average: 4.5, count: 234 },
                 isFeatured: false,
                 tags: ['helmet', 'safety', 'accessory']
             },
             {
-                name: 'SONICA Bike Light Set',
+                name: 'Bike Light Set',
                 description: 'Be seen day and night. 1000 lumen front light, 100 lumen rear, USB rechargeable. Essential safety gear.',
                 category: 'accessories',
                 price: 1999,
                 discountPrice: 1599,
                 images: ['https://images.unsplash.com/photo-1505705694340-019e1e335916?w=800'],
-                specifications: { brand: 'SONICA', model: 'Light Set Pro', material: 'Aluminum + PC', weight: '120g', color: 'Black' },
+                specifications: { brand: 'SS Square', model: 'Light Set Pro', material: 'Aluminum + PC', weight: '120g', color: 'Black' },
                 stock: 150,
                 ratings: { average: 4.6, count: 312 },
                 isFeatured: false,
@@ -350,10 +350,10 @@ const seedDatabase = async (isStandalone = false) => {
 
         console.log('\n✅ Database seeded successfully!\n');
         console.log('📋 Login Credentials:');
-        console.log('   Admin:     admin@sonica.com / admin123');
-        console.log('   Customer:  customer@sonica.com / customer123');
-        console.log('   Inventory: inventory@sonica.com / inventory123');
-        console.log('   Delivery:  delivery@sonica.com / delivery123\n');
+        console.log('   Admin:     admin@ssquare.com / admin123');
+        console.log('   Customer:  customer@ssquare.com / customer123');
+        console.log('   Inventory: inventory@ssquare.com / inventory123');
+        console.log('   Delivery:  delivery@ssquare.com / delivery123\n');
 
         if (isStandalone) process.exit(0);
     } catch (error) {

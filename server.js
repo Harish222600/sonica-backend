@@ -24,10 +24,11 @@ app.use('/api/delivery', require('./src/routes/delivery'));
 app.use('/api/reviews', require('./src/routes/reviews'));
 app.use('/api/analytics', require('./src/routes/analytics'));
 app.use('/api/admin', require('./src/routes/admin'));
+app.use('/api/upload', require('./src/routes/upload'));
 
 // Health check
 app.get('/api/health', (req, res) => {
-  res.json({ status: 'OK', message: 'Sonica Bicycle API is running' });
+  res.json({ status: 'OK', message: 'SS Square Industries API is running' });
 });
 
 // Error handling middleware
@@ -58,7 +59,7 @@ const seedDatabase = require('./src/seed');
 connectDB().then(async () => {
   await seedDatabase();
   app.listen(PORT, () => {
-    console.log(`🚴 Sonica Bicycle Server running on port ${PORT}`);
+    console.log(`🚴 SS Square Industries Server running on port ${PORT}`);
   });
 });
 
