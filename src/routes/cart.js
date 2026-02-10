@@ -11,7 +11,7 @@ router.get('/', protect, async (req, res) => {
     try {
         console.log('Cart GET - User ID:', req.user?._id);
         let cart = await Cart.findOne({ user: req.user._id })
-            .populate('items.product', 'name price discountPrice images stock');
+            .populate('items.product', 'name price discountPrice images stock shippingFees');
 
         if (!cart) {
             console.log('Creating new cart for user:', req.user._id);
@@ -89,19 +89,21 @@ router.post('/add', protect, async (req, res) => {
             }
             cart.items[existingItemIndex].quantity = newQuantity;
             cart.items[existingItemIndex].price = price;
+            cart.items[existingItemIndex].shippingFees = product.shippingFees || 0;
         } else {
             // Add new item
             cart.items.push({
                 product: productId,
                 quantity,
-                price
+                price,
+                shippingFees: product.shippingFees || 0
             });
         }
 
         await cart.save();
 
         cart = await Cart.findById(cart._id)
-            .populate('items.product', 'name price discountPrice images stock');
+            .populate('items.product', 'name price discountPrice images stock shippingFees');
 
         res.json({
             success: true,
@@ -172,7 +174,7 @@ router.put('/update', protect, async (req, res) => {
         await cart.save();
 
         const updatedCart = await Cart.findById(cart._id)
-            .populate('items.product', 'name price discountPrice images stock');
+            .populate('items.product', 'name price discountPrice images stock shippingFees');
 
         res.json({
             success: true,
@@ -207,7 +209,7 @@ router.delete('/remove/:productId', protect, async (req, res) => {
         await cart.save();
 
         const updatedCart = await Cart.findById(cart._id)
-            .populate('items.product', 'name price discountPrice images stock');
+            .populate('items.product', 'name price discountPrice images stock shippingFees');
 
         res.json({
             success: true,

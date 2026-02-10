@@ -13,7 +13,8 @@ const Delivery = require('./models/Delivery');
 // MongoDB Connection
 const connectDB = async () => {
     try {
-        await mongoose.connect(process.env.MONGODB_URI || 'mongodb://localhost:27017/sonica');
+        // FIXED: Added '/sonica' database name to the URI
+        await mongoose.connect(process.env.MONGODB_URI || 'mongodb+srv://sonica:sonica123@cycle.bxbpgvg.mongodb.net/sonica?appName=cycle');
         console.log('✅ MongoDB Connected');
     } catch (error) {
         console.error('❌ MongoDB connection failed:', error);
@@ -45,26 +46,6 @@ const seedDatabase = async (isStandalone = false) => {
         }
 
         console.log('🗑️  Clearing existing data...');
-        // ... (rest of the clearing and seeding logic matches original but wrapped) ...
-        // Wait, I need to include the FULL logic here if I'm replacing the whole block.
-        // It's better to just replace the header and check, and keep the rest?
-        // But the original code deletes unconditionally.
-
-        // I will replace the START of the function up to the deleteMany part, 
-        // and also the END to handle export.
-
-        // Actually, the previous code had `await Promise.all([ User.deleteMany ... ])`.
-        // I should remove that if I want to be purely additive or check existence?
-        // If data exists, I RETURN. So I only reach deleteMany if NO data exists (count == 0).
-        // So keeping deleteMany is fine (it deletes 0 documents).
-
-        /* 
-           The user said: "make sure all the data that is going to be seeded is up to the current changes"
-           And "if the same data already exist then it should not upload".
-           
-           I'll overwrite the whole file content to be safe and clean.
-        */
-
         await Promise.all([
             User.deleteMany({}),
             Product.deleteMany({}),
@@ -135,6 +116,7 @@ const seedDatabase = async (isStandalone = false) => {
                 isFeatured: false,
                 tags: ['climbing', 'lightweight']
             },
+
             // Road Bikes
             {
                 name: 'SONICA Velocity Carbon R1',
@@ -162,6 +144,7 @@ const seedDatabase = async (isStandalone = false) => {
                 isFeatured: true,
                 tags: ['fitness', 'endurance']
             },
+
             // Hybrid Bikes
             {
                 name: 'SONICA City Cruiser',
@@ -189,6 +172,7 @@ const seedDatabase = async (isStandalone = false) => {
                 isFeatured: true,
                 tags: ['commute', 'practical']
             },
+
             // Electric Bikes
             {
                 name: 'SONICA E-Thunder 500',
@@ -216,6 +200,7 @@ const seedDatabase = async (isStandalone = false) => {
                 isFeatured: false,
                 tags: ['electric', 'city', 'commute']
             },
+
             // Kids Bikes
             {
                 name: 'SONICA Junior Racer 20"',
@@ -243,6 +228,7 @@ const seedDatabase = async (isStandalone = false) => {
                 isFeatured: false,
                 tags: ['kids', 'first-bike', 'training']
             },
+
             // Accessories
             {
                 name: 'SONICA Pro Helmet',
@@ -304,8 +290,7 @@ const seedDatabase = async (isStandalone = false) => {
                 rating: Math.floor(Math.random() * 2) + 4,
                 title: ['Great bike!', 'Excellent!', 'Love it!', 'Best purchase', 'Highly Recommend'][Math.floor(Math.random() * 5)],
                 comment: 'Great quality and design. Really happy with this purchase! The build quality exceeded my expectations.',
-                isVerifiedPurchase: true,
-                type: 'product' // Added explicit type
+                isVerifiedPurchase: true
             });
         }
         await Review.insertMany(reviews);
@@ -362,50 +347,6 @@ const seedDatabase = async (isStandalone = false) => {
             await Delivery.insertMany(deliveries);
         }
         console.log(`   Created ${deliveries.length} delivery records`);
-
-        // Added: Create Delivery Reviews for delivered orders
-        // This ensures the seed covers dual review features
-        console.log('🚚 Creating delivery reviews...');
-        const deliveredOrders = shippedOrders.filter(o => o.status === 'delivered');
-        const deliveryReviews = [];
-
-        for (const order of deliveredOrders) {
-            const delivery = deliveries.find(d => d.order.toString() === order._id.toString());
-            if (delivery) {
-                deliveryReviews.push({
-                    type: 'delivery',
-                    user: order.user,
-                    order: order._id,
-                    deliveryPartner: delivery.partner,
-                    rating: 4 + Math.floor(Math.random() * 2),
-                    title: 'Good delivery',
-                    comment: 'On time and polite.',
-                    isVerifiedPurchase: true,
-                    isApproved: true
-                });
-            }
-        }
-
-        // Update Delivery Partner Ratings
-        // (Simplified logic for seed: just insert reviews, real logic in app would calculate)
-        if (deliveryReviews.length > 0) {
-            await Review.insertMany(deliveryReviews);
-            console.log(`   Created ${deliveryReviews.length} delivery reviews`);
-
-            // Manually update partner rating in User model for seeded data?
-            // Or rely on app logic? Seed usually should check this.
-            // I'll update the partners just so stats look right.
-            for (const partner of deliveryPartners) {
-                const pReviews = deliveryReviews.filter(r => r.deliveryPartner.toString() === partner._id.toString());
-                if (pReviews.length > 0) {
-                    const avg = pReviews.reduce((sum, r) => sum + r.rating, 0) / pReviews.length;
-                    await User.findByIdAndUpdate(partner._id, {
-                        'rating.average': avg,
-                        'rating.count': pReviews.length
-                    });
-                }
-            }
-        }
 
         console.log('\n✅ Database seeded successfully!\n');
         console.log('📋 Login Credentials:');
